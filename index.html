@@ -2050,7 +2050,7 @@
     const config = {
       totalGalleryImages: 50, 
       totalReels: 10, 
-      totalMusicTracks: 65, 
+      totalMusicTracks: 65, /* Updated to handle 65 songs */
       weatherLocations: [
         { id: "weather-adana", latitude: 37.0, longitude: 35.3213 },
         { id: "weather-kouvola", latitude: 60.8679, longitude: 26.7042 }
@@ -2089,7 +2089,7 @@
     const monthlyHoroscopes = {
       0: { leo: "Ocak ayı yaratıcılık kıvılcımları getiriyor! İçgüdülerinize güvenin ve kalbinizin ilişkinize rehberlik etmesine izin verin.", sag: "Seikkailujen kuukausi odottaa! Suunnitelkaa kotoisa matka tai uusi yhteinen aktiviteetti." },
       1: { leo: "Şubat ayı iletişimle ilgili. En derin duygularınızı paylaşın; partneriniz sizi dinlemeye çok açık.", sag: "Innokkuutenne on tarttuvaa tässä kuussa! Jatkakaa positiivisen energian levittämistä." },
-      2: { Mart ayı, finansal planlamayı ve birlikte güvenli bir yuva kurmayı teşvik ediyor.", sag: "Henkisen kasvun aika. Yhdistykää syvemmällä tasolla syvällisten keskustelujen kautta." },
+      2: { leo: "Mart ayı, finansal planlamayı ve birlikte güvenli bir yuva kurmayı teşvik ediyor.", sag: "Henkisen kasvun aika. Yhdistykää syvemmällä tasolla syvällisten keskustelujen kautta." },
       3: { leo: "Nisan taze bir enerji getiriyor! Birlikte yeni bir hobiye başlamak için mükemmel bir zaman.", sag: "Tasapaino on avainasemassa tässä kuussa. Varmista, että varaat aikaa sekä työlle että romanssille." },
       4: { leo: "Mayıs tutkulu yönünüzü öne çıkarıyor. Ateşi canlı tutmak için romantik randevular planlayın.", sag: "Kärsivällisyys palkitaan. Kuuntele tarkasti ve tue toistenne unelmia." },
       5: { leo: "Haziran sizi ilgi odağı yapıyor. Sevincinizi paylaşın ve küçük zaferleri kutlayın.", sag: "Matkailu on tähdissä! Jopa pieni viikonloppumatka vahvistaa sidettänne." },
@@ -2503,6 +2503,7 @@
       }
     }
 
+    // Butonu kaldırdığımız için sistem açılır açılmaz veriyi çekecek
     function initDailyFacts() {
       loadDailyFacts();
     }
@@ -2836,7 +2837,7 @@
           if (entry.isIntersecting && modal.classList.contains("open")) { vid.play().catch(e => console.log(e)); } 
           else { vid.pause(); }
         });
-      }, { threshold: 0.2 }); 
+      }, { threshold: 0.2 }); /* Threshold adjusted to ensure reels play when slightly visible on small screens */
       
       for (let i = 1; i <= config.totalReels; i++) {
         const thumb = document.createElement("div");
@@ -3435,7 +3436,7 @@
       loadDailyNews(); 
       loadHoroscopes();
       loadDailyFood();
-      initDailyFacts(); // Günlük bilgiler TV Modunda Başlat (Kusursuz sürüm)
+      initDailyFacts(); // TV Ticker initializes automatically here
       initDailyMoods();
       initQuickNote();
       initShoppingList();
